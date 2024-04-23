@@ -20,6 +20,7 @@ def main():
     add = lambda num: sum(num)
     subtract = lambda num: num[0] - num[1]
     multiply = lambda num: num[0] * num[1]
+    exponent = lambda num: num[0] ** num[1]
     text = lambda text: print(f'{Fore.CYAN}{text} numeros ->{Fore.RESET}\n')
     
     def divide(num):
@@ -29,6 +30,16 @@ def main():
         
         except ZeroDivisionError:
             return f"{Fore.RED}Error: No se puede dividir entre cero !!!{Fore.RESET}"
+        
+    def module(num):
+
+        try:
+            return num[0] % num[1]
+        
+        except ZeroDivisionError:
+            return f"{Fore.RED}Error: No se puede dividir entre cero !!!{Fore.RESET}"
+        
+        
     
     def user_numbers() -> list:
         try:
@@ -45,7 +56,7 @@ def main():
             exit()
 
     def handle_output(result):
-        print(f'{Fore.CYAN}Resultado: {result}{Fore.RESET}\n')
+        print(f'\{Fore.CYAN}Resultado: {result}{Fore.RESET}\n')
     
     def clear_screen():
         if os.name == 'nt':
@@ -73,7 +84,15 @@ def main():
         'multiplicar':multiply,
 
         '4':divide,
-        'dividir':divide
+        'dividir':divide,
+
+        "5":module,
+        "division modular":module,
+
+        "6":exponent,
+        "exponente":exponent
+
+
     }
 
     def user_input_manage():
@@ -82,7 +101,7 @@ def main():
         try:
             user_input = input("Ingrese una opcion: ").lower()
 
-            if user_input == '5' or user_input == 'salir':
+            if user_input == '7' or user_input == 'salir':
                 exit_app()
             else:
                 function = option[user_input]
@@ -93,21 +112,23 @@ def main():
     
     
     ### Executing App ###
-    def master():
-        
+    def master():    
         presentation = Fore.GREEN + '\t.:|Easy Calculator|:.'+Fore.RESET
         menu_options = f'''{Fore.CYAN}
 1: sumar                                                                    
 2: restar
 3: multiplicar
 4: dividir
-5: salir{Fore.RESET}
+5: division modular
+6: exponente
+6: salir{Fore.RESET}
         '''
         clear_screen()
         while True:
             print(presentation)
             print(menu_options)
             user_input_manage()
+            input(f"{Fore.LIGHTBLUE_EX}Presiona enter para continuar:{Fore.RESET}")
     master()
 
 try:
